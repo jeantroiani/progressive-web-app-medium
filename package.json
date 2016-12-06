@@ -4,8 +4,23 @@
   "description": "Progressive web walkthrough",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "delete-dist": "rm -rf dist",
+    "server": "node_modules/.bin/webpack-dev-server --hot",
+    "bundle": "webpack",
+    "build": "npm run delete-dist && webpack && npm run server",
+    "start": "npm run build"
   },
   "author": "Jean Troiani",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-latest": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  }
 }
