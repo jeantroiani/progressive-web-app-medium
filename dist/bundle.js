@@ -91,7 +91,7 @@
 
 
 	// module
-	exports.push([module.id, ".button {\n  width: 100%;\n  border: none;\n  background-color: deeppink;\n  height: 60px;\n  border-radius: 4px;\n}\n.header {\n  display: flex;\n}\n.header-title {\n  flex: 1 auto;\n}\n.header-button {\n  width: 100%;\n  border: none;\n  background-color: deeppink;\n  height: 60px;\n  border-radius: 4px;\n  flex: 1 auto;\n  max-width: 320px;\n}\n.pokedex {\n  display: \"flex\";\n  width: 90%;\n}\n.pokemon-card {\n  max-width: 240px;\n}\n", ""]);
+	exports.push([module.id, ".button {\n  width: 100%;\n  border: none;\n  background-color: white;\n  height: 24px;\n  border-radius: 4px;\n  color: #333;\n  border-color: #999;\n}\n.header {\n  display: flex;\n  border: 0 0 1px ;\n  border-bottom-color: #999;\n}\n.header-title {\n  flex: 1 auto;\n}\n.header-button {\n  width: 100%;\n  border: none;\n  height: 24px;\n  border-radius: 4px;\n  color: #333;\n  border-color: #999;\n  flex: 1 auto;\n  max-width: 320px;\n  margin-right: 8px;\n  background-color: white;\n}\n.pokedex {\n  display: \"flex\";\n  width: 90%;\n}\n.pokemon-card {\n  max-width: 240px;\n}\n", ""]);
 
 	// exports
 
