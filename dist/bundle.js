@@ -8227,12 +8227,18 @@
 	                    case 5:
 	                        pokemons = _context.sent;
 
-	                        if (lastIndexSaved) {
-	                            console.log(pokemons.splice(pokemons[lastIndexSaved]));
-	                            (0, _template.appendPokemons)(pokemons.splice(pokemons[lastIndexSaved]));
+	                        if (!lastIndexSaved) {
+	                            _context.next = 9;
+	                            break;
 	                        }
 
-	                    case 7:
+	                        console.log('po', pokemons.slice(Number(lastIndexSaved)));
+	                        return _context.abrupt('return', (0, _template.appendPokemons)(pokemons.slice(Number(lastIndexSaved))));
+
+	                    case 9:
+	                        return _context.abrupt('return', (0, _template.appendPokemons)(pokemons));
+
+	                    case 10:
 	                    case 'end':
 	                        return _context.stop();
 	                }
@@ -8247,21 +8253,22 @@
 
 	var addPokemon = exports.addPokemon = function () {
 	    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2() {
-	        var lastIndexSaved, index;
+	        var index, lastIndexSaved;
 	        return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	            while (1) {
 	                switch (_context2.prev = _context2.next) {
 	                    case 0:
-	                        _context2.next = 2;
+	                        index = 1;
+	                        _context2.next = 3;
 	                        return (0, _userStorage.getLatestPokemonSavedFromIndexedDB)();
 
-	                    case 2:
+	                    case 3:
 	                        lastIndexSaved = _context2.sent;
-	                        index = Number(lastIndexSaved) + 1;
 
-	                        if (!lastIndexSaved) {
-	                            index = 1;
+	                        if (lastIndexSaved) {
+	                            index = Number(lastIndexSaved) + 1;
 	                        }
+
 	                        fetch(baseURL + resourceType + "/" + index).then(function (data) {
 	                            return data.json();
 	                        }).then(function (data) {
@@ -8430,7 +8437,7 @@
 
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-	var lastItemId = null;
+	var lastItemId = 0;
 	var pokedexInstance = _localforage2.default.createInstance({
 	    name: 'pokedex'
 	});
@@ -8443,6 +8450,7 @@
 	        height = pokemon.height;
 
 	    try {
+	        lastItemId = pokemon.id;
 	        pokedexInstance.setItem(pokemon.id, { id: id, name: name, image: image, weight: weight, height: height });
 	    } catch (e) {
 	        console.error('error saving pokemon to indexedDB:' + e);

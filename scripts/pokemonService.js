@@ -8,17 +8,18 @@ export async function getPokemons() {
     const lastIndexSaved = await getLatestPokemonSavedFromIndexedDB();
     const pokemons = await getPokemonsFromIndexedDB();
     if (lastIndexSaved) {
-            console.log(pokemons.splice(pokemons[lastIndexSaved]));
-            appendPokemons(pokemons.splice(pokemons[lastIndexSaved]));
+        return appendPokemons(pokemons.slice(Number(lastIndexSaved)));
     }
+    return appendPokemons(pokemons);
 }
 
 export async function addPokemon()  {
+    let index = 1;
     const lastIndexSaved = await getLatestPokemonSavedFromIndexedDB();
-    let index = Number(lastIndexSaved) + 1;
-    if (!lastIndexSaved) {
-        index = 1;
+    if (lastIndexSaved) {
+        index = Number(lastIndexSaved) + 1;
     }
+
     fetch(baseURL + resourceType + "/" + index)
     .then(data => {
         return data.json();

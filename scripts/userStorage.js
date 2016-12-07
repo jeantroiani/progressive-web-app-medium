@@ -1,6 +1,6 @@
 import localforage from 'localforage';
 
-let lastItemId = null;
+let lastItemId = 0;
 const pokedexInstance = localforage.createInstance({
     name: 'pokedex'
 })
@@ -8,6 +8,7 @@ const pokedexInstance = localforage.createInstance({
 export function addPokemonToIndexedDB(pokemon) {
     const { id, name, image, weight, height } = pokemon;
     try {
+        lastItemId = pokemon.id;
         pokedexInstance.setItem(pokemon.id, {  id, name, image, weight, height } );
     } catch (e) {
         console.error('error saving pokemon to indexedDB:' + e);
