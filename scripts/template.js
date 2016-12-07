@@ -1,7 +1,7 @@
 export const appendPokemons = (pokemons) => {
     let cardHTML = "";
     pokemons.forEach( pokemon => {
-        cardHTML += generateCarCards(cars[i]);
+        cardHTML += generateCarCards(pokemon);
     });
 
     document.querySelector('.pokedex').insertAdjacentHTML('beforeend', cardHTML);
@@ -9,6 +9,7 @@ export const appendPokemons = (pokemons) => {
 
 
 const generateCarCards = (pokemon) => {
+    const { id, name, height, weight } = pokemon;
     let template = document.querySelector('#card').innerHTML;
     template = template.replace('{{id}}', id);
     template = template.replace('{{name}}', name);

@@ -1,7 +1,7 @@
-import { getPokemons } from './pokemonService';
+import { getPokemons, addPokemon } from './pokemonService';
 
 window.app = {
-    addPokemon: getPokemons,
+    addPokemon: addPokemon,
 }
 
 getPokemons();

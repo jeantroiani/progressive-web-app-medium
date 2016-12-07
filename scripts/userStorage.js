@@ -14,7 +14,7 @@ export function addPokemonToIndexedDB(pokemon) {
     }
 }
 
-async function getLatestPokemonSavedFromIndexedDB() {
+export async function getLatestPokemonSavedFromIndexedDB() {
     try {
         const keys = await pokedexInstance.keys();
         return keys[keys.length - 1];
@@ -35,7 +35,7 @@ async function getPokemonFromIndexedDB(index) {
 export async function getPokemonsFromIndexedDB() {
     let collection = [];
     const lastIndex = await getLatestPokemonSavedFromIndexedDB();
-    for(let i = 0; i < lastIndex; i++) {
+    for(let i = 1; i <= Number(lastIndex); i++) {
         const pokemon = await getPokemonFromIndexedDB(i);
         collection.push(pokemon); 
     }

@@ -4,23 +4,27 @@ import { appendPokemons } from './template';
 const baseURL = 'http://pokeapi.co/api/v2';
 const resourceType = '/pokemon';
 
-export async function getPokemons(position = 1) {
-    const pokemons = await getLatestPokemonSavedFromIndexedDB();
-    if (!lastIndexSaved) {
-        return [];
+export async function getPokemons() {
+    const lastIndexSaved = await getLatestPokemonSavedFromIndexedDB();
+    const pokemons = await getPokemonsFromIndexedDB();
+    if (lastIndexSaved) {
+            console.log(pokemons.splice(pokemons[lastIndexSaved]));
+            appendPokemons(pokemons.splice(pokemons[lastIndexSaved]));
     }
-    appendpokemons(pokemons);
 }
 
 export async function addPokemon()  {
     const lastIndexSaved = await getLatestPokemonSavedFromIndexedDB();
-    const index = lastIndexSaved + 1;
+    let index = Number(lastIndexSaved) + 1;
+    if (!lastIndexSaved) {
+        index = 1;
+    }
     fetch(baseURL + resourceType + "/" + index)
     .then(data => {
         return data.json();
     })
     .then(data => {
         addPokemonToIndexedDB(data)
-        console.log(data.name);
+        getPokemons();
     })
 }
