@@ -10,9 +10,20 @@
     <body>
         <header class="header">
             <h1 class="header-title">Pokemon PWA</h1>
-            <button id="but-refresh" class="header-button">Reload</button>
-            <button id="but-add" class="header-button">Add Pokemon</button>
+            <button onclick="location.reload()" class="header-button">Reload</button>
+            <button onclick="app.addPokemon()" class="header-button">Add Pokemon</button>
         </header>
-      <script src="dist/bundle.js"></script>
+        <section>
+            <h2>Pokedex</h2>
+            <ol class="pokedex">
+            </ol>
+        </section>
+    <script src="dist/bundle.js"></script>
+    <template id="card">
+        <p class="id">{{id}}</p>
+        <p class="name">{{name}}</p>
+        <p class="weight">{{weight}}</p>
+        <p class="height">{{height}}</p>
+    </template>
     </body>
 </html>
