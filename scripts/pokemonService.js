@@ -1,4 +1,4 @@
-import { addPokemonToIndexedDB, getPokemonsFromIndexedDB, getLatestPokemonSavedFromIndexedDB } from './userStorage';
+import { addPokemonToIndexedDB, getPokemonsFromIndexedDB, getLatestPokemonSavedFromIndexedDB, lastItemId } from './userStorage';
 import { appendPokemons } from './template';
 
 const baseURL = 'http://pokeapi.co/api/v2';
@@ -7,7 +7,7 @@ const resourceType = '/pokemon';
 export async function getPokemons() {
     const lastIndexSaved = await getLatestPokemonSavedFromIndexedDB();
     const pokemons = await getPokemonsFromIndexedDB();
-    if (lastIndexSaved) {
+    if (lastIndexSaved && lastItemId) {
         return appendPokemons(pokemons.slice(Number(lastIndexSaved)));
     }
     return appendPokemons(pokemons);

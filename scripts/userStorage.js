@@ -1,6 +1,6 @@
 import localforage from 'localforage';
 
-let lastItemId = 0;
+export let lastItemId = 0;
 const pokedexInstance = localforage.createInstance({
     name: 'pokedex'
 })

@@ -8227,18 +8227,17 @@
 	                    case 5:
 	                        pokemons = _context.sent;
 
-	                        if (!lastIndexSaved) {
-	                            _context.next = 9;
+	                        if (!(lastIndexSaved && _userStorage.lastItemId)) {
+	                            _context.next = 8;
 	                            break;
 	                        }
 
-	                        console.log('po', pokemons.slice(Number(lastIndexSaved)));
 	                        return _context.abrupt('return', (0, _template.appendPokemons)(pokemons.slice(Number(lastIndexSaved))));
 
-	                    case 9:
+	                    case 8:
 	                        return _context.abrupt('return', (0, _template.appendPokemons)(pokemons));
 
-	                    case 10:
+	                    case 9:
 	                    case 'end':
 	                        return _context.stop();
 	                }
@@ -8307,7 +8306,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.getPokemonsFromIndexedDB = exports.getLatestPokemonSavedFromIndexedDB = undefined;
+	exports.getPokemonsFromIndexedDB = exports.getLatestPokemonSavedFromIndexedDB = exports.lastItemId = undefined;
 
 	var getLatestPokemonSavedFromIndexedDB = exports.getLatestPokemonSavedFromIndexedDB = function () {
 	    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
@@ -8437,7 +8436,7 @@
 
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-	var lastItemId = 0;
+	var lastItemId = exports.lastItemId = 0;
 	var pokedexInstance = _localforage2.default.createInstance({
 	    name: 'pokedex'
 	});
@@ -8450,7 +8449,7 @@
 	        height = pokemon.height;
 
 	    try {
-	        lastItemId = pokemon.id;
+	        exports.lastItemId = lastItemId = pokemon.id;
 	        pokedexInstance.setItem(pokemon.id, { id: id, name: name, image: image, weight: weight, height: height });
 	    } catch (e) {
 	        console.error('error saving pokemon to indexedDB:' + e);
@@ -10831,7 +10830,7 @@
 
 
 	// module
-	exports.push([module.id, ".button {\n  width: 100%;\n  border: none;\n  background-color: white;\n  height: 24px;\n  border-radius: 4px;\n  color: #333;\n  border-color: #999;\n}\n.header {\n  display: flex;\n  border: 0 0 1px ;\n  border-bottom-color: #999;\n}\n.header-title {\n  flex: 1 auto;\n}\n.header-button {\n  width: 100%;\n  border: none;\n  height: 24px;\n  border-radius: 4px;\n  color: #333;\n  border-color: #999;\n  flex: 1 auto;\n  max-width: 320px;\n  margin-right: 8px;\n  background-color: white;\n}\n.pokedex {\n  display: \"flex\";\n  width: 90%;\n  border: 1px  black solid;\n}\n.pokemon-card {\n  max-width: 240px;\n}\n", ""]);
+	exports.push([module.id, ".button {\n  width: 100%;\n  border: none;\n  background-color: white;\n  height: 24px;\n  border-radius: 4px;\n  color: #333;\n  border-color: #999;\n}\n.header {\n  display: flex;\n  border: 0 0 1px ;\n  border-bottom-color: #999;\n}\n.header-title {\n  width: 100%;\n  margin: 0;\n}\n@media only screen and (min-width: 768px) {\n  .header-title {\n    flex: 1 auto;\n    width: 50%;\n  }\n}\n.header-button {\n  width: 100%;\n  border: none;\n  height: 24px;\n  color: #333;\n  border-color: #999;\n  flex: 1 auto;\n  max-width: 120px;\n  margin-right: 8px;\n  background-color: white;\n  border: 1px solid #999;\n  border-radius: 4px;\n  outline: none;\n}\n.header-button:active {\n  background-color: #999;\n  color: white;\n}\n.pokedex {\n  display: flex;\n  width: 90%;\n  border: 1px  black solid;\n  list-style: none;\n  padding-left: 0;\n  flex-wrap: wrap;\n}\n.pokemon-card {\n  flex: 1 auto;\n  width: 240px;\n  max-width: 240px;\n  min-height: 400px;\n  border: 1px solid #333;\n  margin: 8px;\n  border-radius: 4px;\n  padding: 8px;\n  box-shadow: 6px 4px 2px -4px rgba(0, 0, 0, 0.75);\n}\n", ""]);
 
 	// exports
 

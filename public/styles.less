@@ -7,24 +7,42 @@
 }
 
 .header-title {
-    flex: 1 auto;
+    margin: 0;
 }
 
 
 .header-button {
     .button;
     flex: 1 auto;
-    max-width: 320px;
+    max-width: 120px;
     margin-right: 8px;
     background-color: @white;
+    border: 1px solid @light-gray;
+    border-radius: 4px;
+    outline: none;
+    &:active {
+        background-color: @light-gray;
+        color: white;
+    }
 }
 
 .pokedex {
-    display:"flex";
+    display: flex;
     width: 90%;
     border: 1px  black solid;
+    list-style: none;
+    padding-left: 0;
+    flex-wrap: wrap;
 }
 
 .pokemon-card {
-    max-width: 240px; 
+    flex: 1 auto;
+    width: 240px;
+    max-width: 240px;
+    min-height: 400px;
+    border: 1px solid @dark-gray;
+    margin: 8px;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 6px 4px 2px -4px rgba(0,0,0,0.75);
 }
